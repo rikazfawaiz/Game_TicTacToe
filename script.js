@@ -201,6 +201,8 @@ const resetBoard = () => {
 }
 
 const checkResult = (playerTurnValue) => {
+    let winStatus = 0;
+
     if (
         (btn1.value == playerTurnValue && btn2.value == playerTurnValue && btn3.value == playerTurnValue) ||
         (btn4.value == playerTurnValue && btn5.value == playerTurnValue && btn6.value == playerTurnValue) ||
@@ -214,16 +216,42 @@ const checkResult = (playerTurnValue) => {
         (btn7.value == playerTurnValue && btn5.value == playerTurnValue && btn3.value == playerTurnValue)
     ) {
         if (playerTurnValue == 'X') {
+            winStatus = 1;
             alert('Player X WIN')
             resetBoard();
+            return;
         } else {
+            winStatus = 1;
             alert('Player O WIN')
             resetBoard();
+            return;
         }
+    } else if (winStatus == 0){
+        checkDraw();
     }
+
+    turnPlayers();
+}
+
+const turnPlayers = () => {
     if (turn == 1) {
         turnPlayer.innerText = 'Turn Player X';
     } else {
         turnPlayer.innerText = 'Turn Player O';
+    }
+}
+
+const checkDraw = () => {
+    let counter = 0;
+    for (const btn of btnFlexAll) {
+        if (btn.value == 'X' || btn.value == 'O') {
+            counter++;
+        }
+    }
+
+    if (counter == 9) {
+        alert("DRAW");
+        resetBoard();
+        return;
     }
 }
