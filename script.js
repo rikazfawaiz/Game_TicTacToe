@@ -11,8 +11,13 @@ const btnStart = document.getElementById('btnStart');
 const btnReset = document.getElementById('btnReset');
 const btnFlexAll = document.querySelectorAll('.button');
 const turnPlayer = document.getElementById('turnPlayer');
+const historyList = document.getElementById('historyList');
+const player_X_History = document.getElementById('playerX');
+const player_O_History = document.getElementById('playerO');
+const player_Draw = document.getElementById('playerDraw');
+const historyGame = [];
 
-let turn = 1;
+let turn = 1, winX = 0, winO = 0, draw = 0;
 
 btn1.addEventListener('click', () => {
     btn1BoardGame();
@@ -55,7 +60,7 @@ btnStart.addEventListener('click', () => {
 });
 
 btnReset.addEventListener('click', () => {
-    resetBoard();
+    resetHistory();
 });
 
 const btn1BoardGame = () => {
@@ -191,6 +196,7 @@ const startGame = () => {
     }
     btnStart.setAttribute('hidden','');
     btnReset.removeAttribute('hidden');
+    historyList.removeAttribute('hidden');
 }
 
 const resetBoard = () => {
@@ -198,6 +204,14 @@ const resetBoard = () => {
         btn.value = '';
         btn.innerText = '';
     }
+}
+
+const resetHistory = () => {
+    resetBoard();
+    winX = 0, winO = 0, draw = 0;
+    player_X_History.innerText = winX;
+    player_O_History.innerText = winO;
+    player_Draw.innerText = draw;
 }
 
 const checkResult = (playerTurnValue) => {
@@ -218,11 +232,13 @@ const checkResult = (playerTurnValue) => {
         if (playerTurnValue == 'X') {
             winStatus = 1;
             alert('Player X WIN')
+            setHistory('X');
             resetBoard();
             return;
         } else {
             winStatus = 1;
             alert('Player O WIN')
+            setHistory('O');
             resetBoard();
             return;
         }
@@ -251,7 +267,22 @@ const checkDraw = () => {
 
     if (counter == 9) {
         alert("DRAW");
+        setHistory(null);
         resetBoard();
         return;
     }
+}
+
+const setHistory = (player) => {
+    if (player == 'X') {
+        winX++;
+    } else if (player == 'O'){
+        winO++;
+    } else {
+        draw++;
+    }
+
+    player_X_History.innerText = winX;
+    player_O_History.innerText = winO;
+    player_Draw.innerText = draw;
 }

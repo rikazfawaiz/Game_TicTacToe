@@ -6,6 +6,21 @@ header {
     text-align: center;
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.container-btn {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
 .flex-container-column {
     display: flex;
     flex-direction: column;
@@ -35,21 +50,6 @@ header {
     background: red;
 }
 
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding: 30px;
-    margin-top: 20px;
-}
-
-.container-btn {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
 #btnStart, #btnReset {
     background-color: aqua;
     padding: 10px;
@@ -71,6 +71,9 @@ header {
     text-align: center;
 }
 
+#historyList {
+    text-align: center;
+}
 
 
 @media screen and (max-width: 513px) {
